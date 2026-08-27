@@ -1,0 +1,220 @@
+{
+  "input": {
+    "target": "10.0.2.15"
+  },
+  "results": [
+    {
+      "mac_address": null,
+      "mac_error": null,
+      "mac_status": "not_observed",
+      "ports": [
+        {
+          "banner": null,
+          "error": null,
+          "port": 21,
+          "protocol": "tcp",
+          "service": "ftp",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 23,
+          "protocol": "tcp",
+          "service": "telnet",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 25,
+          "protocol": "tcp",
+          "service": "smtp",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 53,
+          "protocol": "tcp",
+          "service": "dns",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 110,
+          "protocol": "tcp",
+          "service": "pop3",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 143,
+          "protocol": "tcp",
+          "service": "imap",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 443,
+          "protocol": "tcp",
+          "service": "https",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 445,
+          "protocol": "tcp",
+          "service": "smb",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 587,
+          "protocol": "tcp",
+          "service": "smtp-submission",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 993,
+          "protocol": "tcp",
+          "service": "imaps",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 995,
+          "protocol": "tcp",
+          "service": "pop3s",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 1433,
+          "protocol": "tcp",
+          "service": "mssql",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 3306,
+          "protocol": "tcp",
+          "service": "mysql",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 3389,
+          "protocol": "tcp",
+          "service": "rdp",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 5432,
+          "protocol": "tcp",
+          "service": "postgresql",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 5900,
+          "protocol": "tcp",
+          "service": "vnc",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 6379,
+          "protocol": "tcp",
+          "service": "redis",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 8080,
+          "protocol": "tcp",
+          "service": "http-alt",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 8443,
+          "protocol": "tcp",
+          "service": "https-alt",
+          "state": "closed_or_filtered",
+          "tls": null
+        }
+      ],
+      "reachability_error": null,
+      "reachable": true,
+      "resolved_ip": "10.0.2.15",
+      "reverse_dns": "ubuntu",
+      "reverse_dns_error": null,
+      "scanner_error": null,
+      "target": "10.0.2.15"
+    }
+  ],
+  "scanner": {
+    "name": "Q-SCOUT",
+    "purpose": "Authorized defensive discovery and cryptographic inventory for quantum-readiness assessment."
+  },
+  "schema_version": "1.0",
+  "skipped_targets": [],
+  "summary": {
+    "targets_reported": 1,
+    "targets_skipped": 0
+  }
+}
