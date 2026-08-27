@@ -23,7 +23,11 @@ import sys
 from qscan_lib.discovery import DEFAULT_PORTS, discover_target
 from qscan_lib.targets import DEFAULT_MAX_TARGETS, parse_target_argument
 from qscan_lib.tls_inspect import DEFAULT_TLS_PORTS, inspect_tls
-
+from qscan_lib.classify import (
+    classify_cipher_suite,
+    classify_public_key,
+    classify_signature_algorithm,
+)
 
 def build_arg_parser() -> argparse.ArgumentParser:
     """Construct and return the CLI argument parser."""
@@ -239,6 +243,51 @@ def main() -> int:
                 )
 
                 if tls_result.tls_supported:
+                    print("    Crypto classification:")
+
+                    public_key_classification = classify_public_key(
+                        tls_result.public_key_algorithm,
+                        key_size=tls_result.public_key_size,
+                        curve=tls_result.public_key_curve,
+                    )
+
+                    print(
+                        f"      Public key: "
+                        f"{public_key_classification.category}"
+                    )
+                    print(
+                        f"        Reason: "
+                        f"{public_key_classification.reasoning}"
+                    )
+
+                    cipher_classifications = classify_cipher_suite(
+                        tls_result.cipher_suite
+                    )
+
+                    for classification in cipher_classifications:
+                        print(
+                            f"      {classification.algorithm}: "
+                            f"{classification.category}"
+                        )
+                        print(
+                            f"        Reason: "
+                            f"{classification.reasoning}"
+                        )
+
+                    signature_classification = (
+                        classify_signature_algorithm(
+                            tls_result.signature_algorithm
+                        )
+                    )
+
+                    print(
+                        f"      Signature: "
+                        f"{signature_classification.category}"
+                    )
+                    print(
+                        f"        Reason: "
+                        f"{signature_classification.reasoning}"
+                    )
                     print(
                         f"    TLS supported: {tls_result.tls_supported}"
                     )
