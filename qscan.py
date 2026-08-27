@@ -22,6 +22,7 @@ import sys
 
 from qscan_lib.discovery import DEFAULT_PORTS, discover_target
 from qscan_lib.targets import DEFAULT_MAX_TARGETS, parse_target_argument
+from qscan_lib.tls_inspect import DEFAULT_TLS_PORTS, inspect_tls
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -210,7 +211,92 @@ def main() -> int:
         )
 
         print_discovery_summary(result)
+        # -----------------------------------------------------------
+        # Stage 4: TLS inspection
+        # -----------------------------------------------------------
 
+        open_tls_ports = [
+            port
+            for port in result.ports
+            if port.state == "open"
+            and port.port in DEFAULT_TLS_PORTS
+        ]
+
+        if open_tls_ports:
+            print()
+            print("[qscan] TLS inspection:")
+
+            for port_result in open_tls_ports:
+                print(
+                    f"  - Inspecting TLS on "
+                    f"{result.resolved_ip or target.value}:{port_result.port}..."
+                )
+
+                tls_result = inspect_tls(
+                    result.resolved_ip or target.value,
+                    port_result.port,
+                    timeout=args.timeout,
+                )
+
+                if tls_result.tls_supported:
+                    print(
+                        f"    TLS supported: {tls_result.tls_supported}"
+                    )
+                    print(
+                        f"    TLS version:   "
+                        f"{tls_result.tls_version or 'unknown'}"
+                    )
+                    print(
+                        f"    Cipher:        "
+                        f"{tls_result.cipher_suite or 'unknown'}"
+                    )
+                    print(
+                        f"    Certificate:   "
+                        f"{tls_result.certificate_present}"
+                    )
+
+                    if tls_result.subject:
+                        print(
+                            f"    Subject:       {tls_result.subject}"
+                        )
+
+                    if tls_result.issuer:
+                        print(
+                            f"    Issuer:        {tls_result.issuer}"
+                        )
+
+                    if tls_result.public_key_algorithm:
+                        print(
+                            f"    Public key:    "
+                            f"{tls_result.public_key_algorithm}"
+                        )
+
+                    if tls_result.public_key_size:
+                        print(
+                            f"    Key size:      "
+                            f"{tls_result.public_key_size}"
+                        )
+
+                    if tls_result.public_key_curve:
+                        print(
+                            f"    Curve:         "
+                            f"{tls_result.public_key_curve}"
+                        )
+
+                    if tls_result.signature_algorithm:
+                        print(
+                            f"    Signature:     "
+                            f"{tls_result.signature_algorithm}"
+                        )
+
+                else:
+                    print(
+                        f"    TLS inspection failed: "
+                        f"{tls_result.error or 'unknown error'}"
+                    )
+        else:
+            print()
+            print("[qscan] No open TLS-designated ports observed.")
     print()
     print("[qscan] Discovery complete.")
 
