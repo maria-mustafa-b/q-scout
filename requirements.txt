@@ -1,2 +1,7 @@
-cryptography>=42.0.0
-pytest>=8.0.0
+cryptography>=42.0.0,<51
+pytest>=8.0.0,<10
+
+#other dependencies:
+# -linux
+# -python 3.9+
+# -ip command from iproute2
