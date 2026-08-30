@@ -48,7 +48,8 @@ The endpoint uses a temporary self-signed certificate and exists solely to
 demonstrate Q-SCOUT's certificate inspection, cryptographic inventory, and
 per-algorithm quantum-readiness classification.
 
-The controlled nature of this demonstration is documented further in
+
+=> The controlled nature of this demonstration is documented further in
 `ASSUMPTIONS.md`.
 
 ## Project Structure

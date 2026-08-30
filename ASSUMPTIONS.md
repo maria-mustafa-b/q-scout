@@ -159,3 +159,9 @@ reachability probe on port 443 is inconclusive.
 No TLS-designated open port was observed during this test, so
 `results_scanme.json` is not intended to demonstrate TLS inventory.
 `results_tls_demo.json` provides the separate controlled TLS validation.
+
+## Duplicate certificates
+Q-SCOUT records certificate observations separately for each discovered service rather than deduplicating them globally. The SHA-256 certificate fingerprint can be used to identify the same certificate when it is shared across multiple hosts or services.
+
+##Self-signed certificate indication 
+Q-SCOUT uses equality between the certificate subject and issuer as a heuristic indication that a certificate may be self-signed. It does not currently perform cryptographic verification of the certificate's self-signature.
