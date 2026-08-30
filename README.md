@@ -21,6 +21,36 @@ It does **not** exploit vulnerabilities, brute-force credentials, bypass securit
 - Bounded concurrency and per-operation timeouts
 - Clean Ctrl+C handling and meaningful exit codes
 
+## Included Result Samples
+
+The repository contains separate outputs for different validation purposes.
+
+### `results.json`
+
+Primary scanner output generated from the selected assessment/demo target.
+This file is kept separate from controlled test fixtures.
+
+### `results_scanme.json`
+
+Supplemental network-discovery validation performed against
+`scanme.nmap.org`. It demonstrates TCP service discovery, banner collection,
+and reachability inference from an observed open port.
+
+This result is not intended as the TLS demonstration because no
+TLS-designated open port was observed during the test.
+
+### `results_tls_demo.json`
+
+Controlled TLS functional demonstration generated against a temporary local
+TLS endpoint on `127.0.0.1:8443`.
+
+The endpoint uses a temporary self-signed certificate and exists solely to
+demonstrate Q-SCOUT's certificate inspection, cryptographic inventory, and
+per-algorithm quantum-readiness classification.
+
+The controlled nature of this demonstration is documented further in
+`ASSUMPTIONS.md`.
+
 ## Project Structure
 
 ```text
@@ -40,9 +70,13 @@ q-scout/
 │   ├── test_classify.py
 │   ├── test_report.py
 │   └── test_robustness.py
+├── results/
+│   ├── results.json
+│   ├── results_scanme.json
+│   └── results_tls_demo.json
 ├── presentation/
 ├── requirements.txt
 ├── ASSUMPTIONS.md
 ├── AI_DISCLOSURE.md
-├── README.md
-└── results.json
+└── README.md
+

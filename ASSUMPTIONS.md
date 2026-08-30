@@ -111,3 +111,51 @@ Each network operation is bounded by a timeout to prevent indefinite blocking.
 CSV is a convenience summary.
 
 JSON is the authoritative output because the scanner's TLS and classification results are naturally nested.
+
+## Controlled TLS Demonstration
+
+`results_tls_demo.json` was generated against a temporary TLS service
+running locally on `127.0.0.1:8443`.
+
+The service was created solely as a controlled validation environment to
+demonstrate Q-SCOUT's TLS inventory functionality when an observable TLS
+endpoint is available.
+
+A temporary self-signed RSA certificate was generated using OpenSSL and
+served with `openssl s_server`. This allows the scanner to exercise its
+TLS inspection pipeline, including:
+
+- TLS version detection
+- negotiated cipher-suite collection
+- certificate subject and issuer extraction
+- certificate validity dates
+- Subject Alternative Name extraction
+- public-key algorithm and key size extraction
+- signature-algorithm extraction
+- SHA-256 certificate fingerprinting
+- per-algorithm quantum-readiness classification
+
+The TLS service was not part of the scanned environment and was not created
+to represent a naturally discovered production service. It is explicitly a
+controlled functional demonstration of the scanner.
+
+The private key used for the demonstration is excluded from version control.
+
+## External Discovery Validation
+
+`results_scanme.json` records a limited functional discovery test against
+`scanme.nmap.org`.
+
+This target is provided by the Nmap Project for network-scanning practice.
+The test was used only to validate normal network discovery behavior and did
+not involve exploitation, authentication attempts, or denial-of-service
+activity.
+
+During this test, Q-SCOUT observed open TCP services including SSH and HTTP.
+The result also validates the reachability logic: an observed open TCP port
+can establish that a target is reachable even when the initial TCP
+reachability probe on port 443 is inconclusive.
+
+No TLS-designated open port was observed during this test, so
+`results_scanme.json` is not intended to demonstrate TLS inventory.
+`results_tls_demo.json` provides the separate controlled TLS validation.

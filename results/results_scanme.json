@@ -1,0 +1,248 @@
+{
+  "input": {
+    "target": "scanme.nmap.org"
+  },
+  "results": [
+    {
+      "mac_address": null,
+      "mac_error": null,
+      "mac_status": "not_applicable",
+      "ports": [
+        {
+          "banner": null,
+          "error": null,
+          "port": 21,
+          "protocol": "tcp",
+          "service": "ftp",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": "SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13",
+          "error": null,
+          "port": 22,
+          "protocol": "tcp",
+          "service": "ssh",
+          "state": "open",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 23,
+          "protocol": "tcp",
+          "service": "telnet",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 25,
+          "protocol": "tcp",
+          "service": "smtp",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 53,
+          "protocol": "tcp",
+          "service": "dns",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": "banner read timed out",
+          "port": 80,
+          "protocol": "tcp",
+          "service": "http",
+          "state": "open",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 110,
+          "protocol": "tcp",
+          "service": "pop3",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 143,
+          "protocol": "tcp",
+          "service": "imap",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 443,
+          "protocol": "tcp",
+          "service": "https",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 445,
+          "protocol": "tcp",
+          "service": "smb",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 465,
+          "protocol": "tcp",
+          "service": "smtps",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 587,
+          "protocol": "tcp",
+          "service": "smtp-submission",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 636,
+          "protocol": "tcp",
+          "service": "ldaps",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 853,
+          "protocol": "tcp",
+          "service": "dns-over-tls",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 993,
+          "protocol": "tcp",
+          "service": "imaps",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 995,
+          "protocol": "tcp",
+          "service": "pop3s",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 1433,
+          "protocol": "tcp",
+          "service": "mssql",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 3306,
+          "protocol": "tcp",
+          "service": "mysql",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 3389,
+          "protocol": "tcp",
+          "service": "rdp",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 5432,
+          "protocol": "tcp",
+          "service": "postgresql",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 5900,
+          "protocol": "tcp",
+          "service": "vnc",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 6379,
+          "protocol": "tcp",
+          "service": "redis",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 8080,
+          "protocol": "tcp",
+          "service": "http-alt",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 8443,
+          "protocol": "tcp",
+          "service": "https-alt",
+          "state": "closed_or_filtered",
+          "tls": null
+        }
+      ],
+      "reachability_error": null,
+      "reachability_method": "tcp_port_observation",
+      "reachable": true,
+      "resolved_ip": "45.33.32.156",
+      "reverse_dns": "scanme.nmap.org",
+      "reverse_dns_error": null,
+      "scanner_error": null,
+      "target": "scanme.nmap.org"
+    }
+  ],
+  "scanner": {
+    "name": "Q-SCOUT",
+    "purpose": "Authorized defensive discovery and cryptographic inventory for quantum-readiness assessment."
+  },
+  "schema_version": "1.0",
+  "skipped_targets": [],
+  "summary": {
+    "targets_reported": 1,
+    "targets_skipped": 0
+  }
+}
