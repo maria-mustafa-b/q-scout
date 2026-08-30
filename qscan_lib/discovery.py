@@ -38,6 +38,7 @@ from typing import Dict, List, Optional, Tuple
 
 # Small, defined list of commonly encountered TCP services.
 # This is intentionally NOT a 1-65535 port scan.
+
 DEFAULT_PORTS: Tuple[int, ...] = (
     21,    # FTP
     22,    # SSH
@@ -48,8 +49,11 @@ DEFAULT_PORTS: Tuple[int, ...] = (
     110,   # POP3
     143,   # IMAP
     443,   # HTTPS
+    465,   # SMTPS
     445,   # SMB
     587,   # SMTP submission
+    636,   # LDAPS
+    853,   # DNS over TLS
     993,   # IMAPS
     995,   # POP3S
     1433,  # Microsoft SQL Server
@@ -93,6 +97,9 @@ SERVICE_NAMES: Dict[int, str] = {
     6379: "redis",
     8080: "http-alt",
     8443: "https-alt",
+    465: "smtps",
+    636: "ldaps",
+    853: "dns-over-tls",
 }
 
 
@@ -120,6 +127,7 @@ class DiscoveryResult:
     resolved_ip: Optional[str] = None
 
     reachable: Optional[bool] = None
+    reachability_method: Optional[str] = None
     reachability_error: Optional[str] = None
 
     reverse_dns: Optional[str] = None
@@ -623,6 +631,7 @@ def discover_target(
     )
 
     result.reachable = reachable
+    result.reachability_method = ("tcp_probe_443" if reachable is True else None)
     result.reachability_error = reachability_error
 
     # ---------------------------------------------------------------
@@ -649,7 +658,7 @@ def discover_target(
 
     # ---------------------------------------------------------------
     # Port scan
-    # ---------------------------------------------------------------
+    # ------------------------------------------------------------------------------
 
     try:
         result.ports = scan_ports(
@@ -658,6 +667,14 @@ def discover_target(
             timeout=timeout,
             max_workers=max_workers,
         )
+
+        # A confirmed open TCP port proves that the host is reachable,
+        # even if the initial port-443 reachability probe was inconclusive.
+        if any(port.state == "open" for port in result.ports):
+            if result.reachable is not True:
+                result.reachable = True
+                result.reachability_method = "tcp_port_observation"
+                result.reachability_error = None
 
     except Exception as exc:
         result.scanner_error = f"port scanning failed: {exc}"

@@ -40,7 +40,6 @@ q-scout/
 │   ├── test_classify.py
 │   ├── test_report.py
 │   └── test_robustness.py
-├── scripts/
 ├── presentation/
 ├── requirements.txt
 ├── ASSUMPTIONS.md

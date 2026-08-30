@@ -21,6 +21,7 @@ from qscan_lib.discovery import (
     _safe_decode_banner,
     _service_name,
     discovery_result_to_dict,
+    discover_target,
     is_same_l2_segment,
     lookup_mac_address,
     resolve_target,
@@ -282,3 +283,50 @@ def test_discovery_result_serializes_to_dict():
 
 def test_rfc5737_documentation_ip_is_not_local_l2():
     assert is_same_l2_segment("203.0.113.10") is False
+
+
+def test_open_port_upgrades_indeterminate_reachability():
+    with patch(
+        "qscan_lib.discovery.resolve_target",
+        return_value=("192.168.56.10", None),
+    ), patch(
+        "qscan_lib.discovery.check_reachability",
+        return_value=(
+            None,
+            "TCP reachability probe timed out",
+        ),
+    ), patch(
+        "qscan_lib.discovery.reverse_dns_lookup",
+        return_value=(None, None),
+    ), patch(
+        "qscan_lib.discovery.lookup_mac_address",
+        return_value=(None, "not_observed", None),
+    ), patch(
+        "qscan_lib.discovery.scan_ports",
+        return_value=[
+            PortResult(
+                port=22,
+                state="open",
+                service="ssh",
+            )
+        ],
+    ):
+        result = discover_target(
+            "192.168.56.10",
+            timeout=0.1,
+        )
+
+    assert result.reachable is True
+    assert (
+        result.reachability_method
+        == "tcp_port_observation"
+    )
+    assert result.reachability_error is None
+
+
+def test_default_ports_cover_all_default_tls_ports():
+    from qscan_lib.tls_inspect import DEFAULT_TLS_PORTS
+
+    assert DEFAULT_TLS_PORTS.issubset(
+        set(DEFAULT_PORTS)
+    )

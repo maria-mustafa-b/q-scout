@@ -101,9 +101,36 @@
         {
           "banner": null,
           "error": null,
+          "port": 465,
+          "protocol": "tcp",
+          "service": "smtps",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
           "port": 587,
           "protocol": "tcp",
           "service": "smtp-submission",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 636,
+          "protocol": "tcp",
+          "service": "ldaps",
+          "state": "closed_or_filtered",
+          "tls": null
+        },
+        {
+          "banner": null,
+          "error": null,
+          "port": 853,
+          "protocol": "tcp",
+          "service": "dns-over-tls",
           "state": "closed_or_filtered",
           "tls": null
         },
@@ -199,6 +226,7 @@
         }
       ],
       "reachability_error": null,
+      "reachability_method": "tcp_probe_443",
       "reachable": true,
       "resolved_ip": "10.0.2.15",
       "reverse_dns": "ubuntu",

@@ -94,6 +94,10 @@ def print_discovery_summary(result) -> None:
     print(f"Target:        {result.target}")
     print(f"Resolved IP:   {result.resolved_ip or 'null'}")
     print(f"Reachable:     {result.reachable}")
+    print(
+        f"Method:        "
+        f"{result.reachability_method or 'null'}"
+    )
 
     if result.reachability_error:
         print(f"Reachability:  {result.reachability_error}")
@@ -360,6 +364,7 @@ def main() -> int:
             "target": result.target,
             "resolved_ip": result.resolved_ip,
             "reachable": result.reachable,
+            "reachability_method": result.reachability_method,
             "reachability_error": result.reachability_error,
             "reverse_dns": result.reverse_dns,
             "reverse_dns_error": result.reverse_dns_error,
