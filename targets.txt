@@ -1,0 +1,5 @@
+10.0.2.15
+example.local
+# this is a comment
+192.168.56.0/30
+badentry!!!
